@@ -36,10 +36,10 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<UserResponseDto> login(@RequestBody UserRequestDto request) {
 
-        this.doAuthenticate(request.getPhone(), request.getPassword());
+        this.doAuthenticate(request.getEmail(), request.getPassword());
 
 
-        UserDetails userDetails = userDetailsService.loadUserByUsername(request.getPhone());
+        UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
         String token = this.helper.generateToken(userDetails);
 
 //        UserRequestDto response = UserResponseDto.builder()

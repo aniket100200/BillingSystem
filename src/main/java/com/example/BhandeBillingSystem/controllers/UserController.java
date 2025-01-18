@@ -80,6 +80,14 @@ public class UserController {
         }
     }
 
+    @PostMapping("/update")
+    public ResponseEntity<String> updateUser(@RequestParam("uuid") String uuid,@RequestBody UserRequestDto dto) {
+        UserResponseDto responseDto = userService.updateUser(uuid,dto);
+
+        responseDto.setMessage("Updated Successfully");
+        return ResponseEntity.ok(responseDto.getMessage());
+    }
+
     @PostMapping("/signup")
     public ResponseEntity<String> signUp(@RequestBody UserRequestDto dto) {
         return null;

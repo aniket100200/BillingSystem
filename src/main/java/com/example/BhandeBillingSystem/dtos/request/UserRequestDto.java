@@ -3,7 +3,6 @@ package com.example.BhandeBillingSystem.dtos.request;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
@@ -18,6 +17,28 @@ public class UserRequestDto {
     String zip;
     String country;
     String password;
+    String role;
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public UserRequestDto(String name, String email, String phone, String address, String city, String state, String country, String zip, String password, String role) {
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.country = country;
+        this.zip = zip;
+        this.password = password;
+        this.role = role;
+    }
 
     public String getName() {
         return name;

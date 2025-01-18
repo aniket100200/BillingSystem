@@ -17,10 +17,10 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String phone) throws UsernameNotFoundException {
-        User userEntity = userRepository.findByPhone(phone);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User userEntity = userRepository.findByEmail(email);
         if (userEntity == null) {
-            throw new UsernameNotFoundException("User not found with Phone " + phone);
+            throw new UsernameNotFoundException("User not found with Email " + email);
         }
 
         return org.springframework.security.core.userdetails.User.builder()

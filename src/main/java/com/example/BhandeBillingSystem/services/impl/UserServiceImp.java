@@ -36,7 +36,7 @@ public class UserServiceImp implements UserService {
             return "User Already Exists";
         }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-
+        user.setRole(dto.getRole());
             userRepository.save(user);
             return "User created: " + user.toString();
 
@@ -78,6 +78,7 @@ public class UserServiceImp implements UserService {
     public UserResponseDto updateUser(String uuid, UserRequestDto dto) {
         User user = UserTransformer.userFromUserDto(dto);
         user.setUuid(uuid);
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
        user = userRepository.save(user);
         return UserTransformer.userToUserResponseDto(user);
     }

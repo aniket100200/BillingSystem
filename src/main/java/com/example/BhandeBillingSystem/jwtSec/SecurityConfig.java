@@ -30,7 +30,7 @@ public class SecurityConfig {
                         .requestMatchers("/test").authenticated()  // Require authentication for /test
                         .requestMatchers("/user/create").permitAll()
                         .requestMatchers("/user/login").permitAll()
-                        .anyRequest().permitAll()              // Require authentication for all other requests
+                        .anyRequest().authenticated()              // Require authentication for all other requests
                 )
 
                 // Exception handling configuration
