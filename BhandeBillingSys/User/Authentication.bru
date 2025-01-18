@@ -5,20 +5,21 @@ meta {
 }
 
 post {
-  url: http://localhost:8080/auth/login
+  url: http://localhost:8080/user/create
   body: json
   auth: none
 }
 
 body:json {
   {
-    "name":"Prachi Athawale",
-    "email":"Prachi@gmail.com",
-    "phone":"8847782858",
+    "name":"test",
+    "email":"test@gmail.com",
+    "phone":"8847782828",
     "adddress":"city",
     "city":"city",
     "state":"city",
     "country":"India",
-    "password":"Aniket"
+    "password":"Aniket",
+    "role" : "ADMIN"
   }
 }

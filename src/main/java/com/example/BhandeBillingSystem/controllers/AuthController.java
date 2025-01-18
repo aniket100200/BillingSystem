@@ -57,7 +57,9 @@ public class AuthController {
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(email, password);
         try {
+            System.out.println(email+"<---"+password);
             manager.authenticate(authentication);
+            System.out.println(email+"<---"+password);
 
 
         } catch (BadCredentialsException e) {

@@ -4,8 +4,23 @@ meta {
   seq: 5
 }
 
-get {
+post {
   url: http://localhost:8080/user/create
-  body: none
+  body: json
   auth: none
+}
+
+body:json {
+  {
+    "name":"Aniket Khangar",
+    "email":"aniket@gmail.com",
+    "phone":"9665178772",
+    "address":"21 makardhokada",
+    "city":"Bhandara",
+    "zip":"441924",
+    "country":"IND",
+    "password":"_Prachi@123",
+    "state":"Maharashtra"
+    
+  }
 }

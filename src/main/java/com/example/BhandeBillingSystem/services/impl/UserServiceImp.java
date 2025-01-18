@@ -31,20 +31,15 @@ public class UserServiceImp implements UserService {
     @Override
     public String createUser(UserRequestDto dto) {
         User user = UserTransformer.userFromUserDto(dto);
+        User u = userRepository.findByPhone(dto.getPhone());
+        if (u != null) {
+            return "User Already Exists";
+        }
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        System.out.println(user.toString());
-        try{
-            UserResponseDto user1 = findByPhoneNumber(dto.getPhone());
-            if (user1 != null) {
-                updateUser(user1.getUuid(), dto).setMessage("User Update Successfully");
-                return "User Updated Successfully";
-            }
-        }catch (UserNotFoundException e){
+
             userRepository.save(user);
             return "User created: " + user.toString();
-        }
 
-        return "Unable to create user";
 
     }
 
