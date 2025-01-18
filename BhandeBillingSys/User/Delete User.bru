@@ -1,0 +1,19 @@
+meta {
+  name: Delete User
+  type: http
+  seq: 3
+}
+
+delete {
+  url: http://localhost:8080/user/deleteByUuid?uuid=e9b4d9cb-3dbb-49cc-aa1d-c4a9dc838a26
+  body: none
+  auth: none
+}
+
+params:query {
+  uuid: e9b4d9cb-3dbb-49cc-aa1d-c4a9dc838a26
+}
+
+headers {
+  : 
+}
