@@ -1,4 +1,4 @@
-package com.example.BhandeBillingSystem.dtos.response;
+package com.example.BhandeBillingSystem.dtos.request;
 
 import com.example.BhandeBillingSystem.enums.Status;
 

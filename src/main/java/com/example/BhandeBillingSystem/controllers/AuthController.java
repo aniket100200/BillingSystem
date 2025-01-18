@@ -13,24 +13,29 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
 public class AuthController {
 
-    @Autowired
-    private CustomUserDetailsService userDetailsService;
+
+    final private CustomUserDetailsService userDetailsService;
+
+    final private AuthenticationManager manager;
+
+
+   final private JwtHelper helper;
+
+    final private Logger logger;
 
     @Autowired
-    private AuthenticationManager manager;
-
-
-    @Autowired
-    private JwtHelper helper;
-
-    private Logger logger = LoggerFactory.getLogger(AuthController.class);
+    public AuthController(CustomUserDetailsService userDetailsService, AuthenticationManager manager, JwtHelper helper) {
+        this.userDetailsService = userDetailsService;
+        this.manager = manager;
+        this.helper = helper;
+        this.logger = LoggerFactory.getLogger(AuthController.class);
+    }
 
 
     @PostMapping("/login")
@@ -42,9 +47,7 @@ public class AuthController {
         UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
         String token = this.helper.generateToken(userDetails);
 
-//        UserRequestDto response = UserResponseDto.builder()
-//                .jwtToken(token)
-//                .username(userDetails.getUsername()).build();
+
         UserResponseDto response = new UserResponseDto();
         response.setMessage(token);
         response.setName(userDetails.getUsername());
@@ -57,12 +60,9 @@ public class AuthController {
 
         UsernamePasswordAuthenticationToken authentication = new UsernamePasswordAuthenticationToken(email, password);
         try {
-            System.out.println(email+"<---"+password);
             manager.authenticate(authentication);
-            System.out.println(email+"<---"+password);
-
-
         } catch (BadCredentialsException e) {
+            logger.error(e.getMessage());
             throw new BadCredentialsException(" Invalid Username or Password  !!");
         }
 
