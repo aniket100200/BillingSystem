@@ -1,0 +1,27 @@
+.form-container{
+  width: 100vw;
+  height: 98vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  .form{
+    width: min(400px, 90vw) ;
+    border: 2px solid cadetblue;
+    padding: 2rem;
+    border-radius: 10px;
+    border: 1px solid #e3e3e3;
+
+    .btn{
+      background-color: blue;
+      color: white;
+      font-weight: 500;
+
+    }
+
+    .message{
+      text-align: center;
+      margin:20px auto;
+    }
+
+  }
+}

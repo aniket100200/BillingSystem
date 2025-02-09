@@ -90,7 +90,7 @@ public class UserController {
 
     @PostMapping("/signup")
     public ResponseEntity<String> signUp(@RequestBody UserRequestDto dto) {
-        return null;
+        return ResponseEntity.ok(userService.createUser(dto));
     }
 
     @PostMapping("/login")
