@@ -20,6 +20,8 @@ public class User {
     String uuid;
 
     String name;
+
+    @Column(unique = true)
     String email;
 
     @Column(unique = true)

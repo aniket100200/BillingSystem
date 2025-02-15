@@ -1,7 +1,7 @@
 import axios from "axios";
 import {notification} from "antd";
 
-const baseURL = "http://192.168.206.107:8080";
+export const baseURL = "http://192.168.206.107:8080";
 const endpoints ={
     login:`${baseURL}/auth/login`,
     signup:`${baseURL}/user/create`,
@@ -25,8 +25,30 @@ export async function login(formData){
        return {success:true};
 
 
-    }catch(e){
+    }
+    catch(e){
         notification.error({message:"Login failed"});
         return  {success:false};
     }
+}
+
+export async function signup(formData) {
+    try{
+        const resp = await  axios({
+             url: endpoints.signup,
+             method: "POST",
+             data : formData
+         });       
+ 
+        notification.success({message:"Signup successfully"});
+        alert('Success');
+
+        return {success:true};
+ 
+ 
+     }
+     catch(e){
+         alert('Failed')
+         return  {success:false};
+     }
 }

@@ -9,9 +9,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/user")
-@CrossOrigin
+@CrossOrigin(origins = "*")
 public class UserController {
     final UserService userService;
     private final AuthController authController;
@@ -97,5 +99,10 @@ public class UserController {
     public ResponseEntity<UserResponseDto> login(@RequestBody UserRequestDto dto) {
         return authController.login(dto);
 
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<UserResponseDto>> getAllUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 }

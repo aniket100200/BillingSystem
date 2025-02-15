@@ -11,6 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 @Service
 public class UserServiceImp implements UserService {
@@ -91,5 +94,15 @@ public class UserServiceImp implements UserService {
         }
         userRepository.delete(user);
         return "User deleted: " + user.toString();
+    }
+
+    @Override
+    public List<UserResponseDto> getAllUsers() {
+        List<User> users = userRepository.findAll();
+        List<UserResponseDto> dtos = new ArrayList<>();
+        for(User user : users) {
+            dtos.add(UserTransformer.userToUserResponseDto(user));
+        }
+        return dtos;
     }
 }

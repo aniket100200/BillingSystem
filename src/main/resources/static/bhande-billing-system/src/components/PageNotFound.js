@@ -1,20 +1,20 @@
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const PageNotFound = () => {
-   const isUserLoggedIn =  useSelector(state => state.isUserLoggedIn);
-   const navigate = useNavigate();
-  useEffect(()=>{
-    if(isUserLoggedIn) navigate("/home");
+  const isUserLoggedIn = useSelector((state) => state.login.isUserLoggedIn);
+  const[isLogged, setUserLoggedIn] = useState(isUserLoggedIn);
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isUserLoggedIn) navigate("/home");
     else navigate("/login");
-  },isUserLoggedIn);
+  }, [isUserLoggedIn]);
   return (
     <div>
-        Page Not Found<div></div>
-    
+      Page Not Found<div></div>
     </div>
-  )
-}
+  );
+};
 
 export default PageNotFound;

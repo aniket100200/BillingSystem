@@ -14,19 +14,19 @@ const Login = () => {
   const dispatch  = useDispatch();
 
   const onLogin = (data) => {
-
     //show a notification
-    notification.success({message:"Login Success",description:"Login success",duration:5000,
-    placement:"top"});
+
     const resp =login(data); //this is promise
     setIsLoading(true);
     resp.then((data)=>{
       const{success} =data;
-      if(success)
-        dispatch(actions.LoggedIn);
 
       if(success)
-        navigate("/home");
+        {
+          dispatch({ type: actions.LoggedIn});
+
+          navigate("/home");
+        }
       setIsLoading(false);
     })
     

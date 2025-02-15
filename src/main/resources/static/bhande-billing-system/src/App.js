@@ -11,17 +11,18 @@ const Login = lazy(() => import('./routes/Login'));
 const Home = lazy(() => import('./routes/Home')); // This is called lazy loading
 
 function App() {
-  const isUserLoggedIn = useSelector(state =>state.isUserLoggedIn);
+  const isUserLoggedIn = useSelector(state =>state.login.isUserLoggedIn);
   //lazy Initialization.. 
 
   return(
     <div className='App'>
       <BrowserRouter>
         <Routes>
-          {isUserLoggedIn ? <Route path='home' element={<LoadingWrapper Component={Home} />} /> :
+          {isUserLoggedIn ? <Route path='/home' element={<LoadingWrapper Component={Home} />} /> :
             <>
-              <Route path='login' element={<LoadingWrapper Component={Login} />} />
-              <Route path='signup' element={<LoadingWrapper Component={Signup} />} />
+              <Route path='/' element={<LoadingWrapper Component={Login} />} />
+              <Route path='/login' element={<LoadingWrapper Component={Login} />} />
+              <Route path='/signup' element={<LoadingWrapper Component={Signup} />} />
             </>}
           <Route path='*' element={<LoadingWrapper Component={PageNotFound} />} />
         </Routes>
