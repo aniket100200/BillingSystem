@@ -42,19 +42,24 @@ public class AuthController {
     @PostMapping("/login")
     public ResponseEntity<UserResponseDto> login(@RequestBody UserRequestDto request) {
 
-        this.doAuthenticate(request.getEmail(), request.getPassword());
+       try {
+            this.doAuthenticate(request.getEmail(), request.getPassword());
 
 
-        UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
-        String token = this.helper.generateToken(userDetails);
+            UserDetails userDetails = userDetailsService.loadUserByUsername(request.getEmail());
+            String token = this.helper.generateToken(userDetails);
 
 
-        UserResponseDto response = new UserResponseDto();
-        response.setMessage(token);
-        response.setName(userDetails.getUsername());
-        response.setEmail(userDetails.getUsername());
-        response.setUuid(request.getEmail());
-        return new ResponseEntity<>(response, HttpStatus.OK);
+            UserResponseDto response = new UserResponseDto();
+            response.setMessage(token);
+            response.setName(userDetails.getUsername());
+            response.setEmail(userDetails.getUsername());
+            response.setUuid(request.getEmail());
+           return new ResponseEntity<>(response, HttpStatus.OK);
+        }catch (Exception t){
+           return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+       }
+
     }
 
     private void doAuthenticate(String email, String password) {

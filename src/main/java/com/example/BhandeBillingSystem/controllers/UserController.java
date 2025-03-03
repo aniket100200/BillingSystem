@@ -103,6 +103,13 @@ public class UserController {
 
     @GetMapping("/all")
     public ResponseEntity<List<UserResponseDto>> getAllUsers() {
-        return ResponseEntity.ok(userService.getAllUsers());
+        try{
+            List<UserResponseDto> list = userService.getAllUsers();
+            return ResponseEntity.ok(list);
+        }catch (Exception e){
+            return ResponseEntity.notFound().build();
+        }
+
+
     }
 }

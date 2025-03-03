@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@mui/icons-material": "^6.4.5",
+    "@mui/material": "^6.4.5",
     "ajax": "^0.0.4",
     "antd": "^5.23.2",
     "axios": "^1.7.9",
     "cra-template": "1.2.0",
+    "material-icons": "^1.13.14",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-redux": "^9.2.0",

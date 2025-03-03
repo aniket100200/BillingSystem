@@ -1,0 +1,84 @@
+{
+    "images":[
+        {
+            "id": 1,
+            "name": "Balti Logo",
+            "url": "/images/Balti.jpg"
+          },
+          {
+            "id": 2,
+            "name": "Kathli Logo",
+            "url": "/images/cathli.jpg"
+          },
+          {
+            "id": 3,
+            "name": "Chamcha Logo",
+            "url": "/images/chamcha.jpg"
+          },
+          {
+            "id": 4,
+            "name": "Chatai Logo",
+            "url": "/images/chatai.jpg"
+          },
+          {
+            "id": 5,
+            "name": "Dandi Ganj Logo",
+            "url": "/images/Dandi_ganj.jpg"
+          },
+          {
+            "id": 6,
+            "name": "Dawala Logo",
+            "url": "/images/dawla.jpg"
+          },
+          {
+            "id": 7,
+            "name": "German Ganj Logo",
+            "url": "/images/german_ganj.jpg"
+          },
+          {
+            "id": 8,
+            "name": "German Pena Logo",
+            "url": "/images/german_pena.jpg"
+          },
+          {
+            "id": 9,
+            "name": "Katora Logo",
+            "url": "/images/katore.jpg"
+          },
+          {
+            "id": 10,
+            "name": "Khurchi Logo",
+            "url": "/images/Khurchi.jpg"
+          },
+          {
+            "id": 11,
+            "name": "Pittal Ganj Logo",
+            "url": "/images/pittal_ganj.jpg"
+          },
+          {
+            "id": 12,
+            "name": "Plastic Mug Logo",
+            "url": "/images/plastic_mug.jpg"
+          },
+          {
+            "id":13,
+            "name": "Plastic Tuff Logo",
+            "url": "/images/plastic_tup.jpg"
+          },
+          {
+            "id": 14,
+            "name": "Saratha Logo",
+            "url": "/images/sarata.jpg"
+          },
+          {
+            "id": 15,
+            "name": "Tawa Logo",
+            "url": "/images/tawa.jpg"
+          },
+          {
+            "id": 16,
+            "name": "Water Tank Logo",
+            "url": "/images/water_tank.jpg"
+          }
+    ]
+}

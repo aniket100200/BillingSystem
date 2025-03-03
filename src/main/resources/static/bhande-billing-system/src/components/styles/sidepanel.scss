@@ -1,0 +1,16 @@
+.tabs{
+    display: flex;
+    flex-direction: column;
+    .link{
+        text-decoration: none;
+        color: inherit;
+        padding-top: 10px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .active{
+        text-decoration: underline;
+    }
+}

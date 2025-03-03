@@ -1,0 +1,91 @@
+$tenPad :10px;
+
+.App{
+    display: grid;
+    grid-template-columns: minmax(50px,2fr) 13fr;
+
+    #popup{
+        position: fixed;
+        z-index: 1;
+        // display: none;
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        align-items: center;
+        justify-content: center; 
+        
+        #popup-container{
+            margin: 50px;
+            background-color: green;
+            height: 90vh;
+            width: 90vw;
+
+          
+        }
+
+        .popup-close-btn{
+           position: fixed;
+           bottom: 40px;
+           right: 110px;
+        }
+    }
+
+    .sidepanel{
+        border-right: 1px solid rgb(63, 56, 56);
+        box-shadow: 3px 1px 5px gray;
+        height: 100vh;
+        overflow: hidden;
+        padding: $tenPad;
+        padding-left: 0;
+        padding-top: 0;
+        display: grid;
+        grid-template-rows: 10fr 1fr;
+
+        .active:first-child{
+            text-decoration: underline;
+        }
+        .top-bar{
+            padding: 5px;
+
+            .logo{
+                font-size: 20px;
+                width: 100%;
+                text-align: center;
+                font-weight: 600;
+                text-decoration: underline;
+            }
+
+            .tabs{
+                h5{
+                    cursor: pointer;
+                }
+            }
+        }
+        
+        .logout{
+            padding: 5px;
+        }
+
+    }
+
+    table{
+
+        margin-left: 10px;
+        margin-top: 10px;
+        border: 1px solid black;
+        border-collapse: collapse;
+        th{
+            border: 1px solid rgb(51, 9, 9);
+            padding: 7px;
+        }
+        td{
+            border: 1px solid black;
+            padding: 5px;
+        }
+    }
+
+    .mainscreen{
+        padding: $tenPad;
+    }
+}

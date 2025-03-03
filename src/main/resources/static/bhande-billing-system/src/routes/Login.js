@@ -47,7 +47,7 @@ const Login = () => {
         <Button block={true} className={"btn"} htmlType={"submit"} loading={isLoading}>Submit</Button>
         <div className={"message"}>don't have an Account? <Link to={"/signup"}>Signup</Link></div>
       </Form>
-
+      <img />
 
     </div>
   )

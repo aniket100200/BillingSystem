@@ -5,7 +5,7 @@ import {Link} from "react-router-dom";
 import { signup } from '../auth';
 import {Option} from "antd/es/mentions";
 
-const Signup = () => {
+const Signup = ({uuid}) => {
   const onFinishForm = (data) => {
        const resp =signup(data);
   }
@@ -65,7 +65,7 @@ const Signup = () => {
         </div>
         <div>
         <Button block htmlType={"submit"} className={"btn"}>Submit</Button>
-        <div className={"message"}>Already have an Account? <Link to={"/"}>Login</Link></div>
+        {uuid ? <></> : <div className={"message"}>Already have an Account? <Link to={"/"}>Login</Link></div>}
         </div>
       </Form>
 

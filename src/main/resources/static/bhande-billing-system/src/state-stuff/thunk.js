@@ -6,14 +6,13 @@ const delay = (ms)=>{
 }
 
 //I'll fetch my data from backend..
-const baseURL = "http://192.168.206.107:8080";
+const baseURL = `http://${window.location.hostname}:8080`;
 
 const endpoints = {
   allUsers : `${baseURL}/user/all`,
 }
 
 async function myThunk(dispatch) {
-
         try {
           const response = await axios({
             url: endpoints.allUsers,
