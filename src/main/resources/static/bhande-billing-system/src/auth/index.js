@@ -8,6 +8,8 @@ const endpoints ={
     addUtensile:`${baseURL}/utensile/create`,
     deleteUser: `${baseURL}/user/deleteByUuid`,
     editUser :  `${baseURL}/user/get`,
+    updateUser : `${baseURL}/user/update`,
+    getUtensiles : `${baseURL}/utensile/get`
 }
 
 export async function login(formData){
@@ -115,6 +117,50 @@ export async function editUser(uuid) {
 
         return {success: false};
 
+    }
+    
+}
+
+
+export async  function updateUser(uuid,data) {
+    try {
+        const resp = await axios({
+            url: endpoints.updateUser,
+            method: "PUT",
+            data :data,
+            params:{
+                uuid : uuid
+            },
+            headers:{
+                Authorization: "Bearer "+localStorage.getItem("token")
+            },
+
+        })
+
+        return {success : true, msg: "User Updated User Successfully!!!"};
+
+    }catch (t){
+        return {success:false};
+    }
+
+}
+
+export async function getUtensiles() {
+    try {
+        const resp = await axios({
+            method: "GET",
+            url: endpoints.getUtensiles,
+            headers: {
+                Authorization: "Bearer " + localStorage.getItem("token")
+            }
+
+        });
+        
+        return {success : true, data : resp.data};
+    } catch (error) {
+
+        return { success : false, data : []};
+        console.log(error);
     }
     
 }

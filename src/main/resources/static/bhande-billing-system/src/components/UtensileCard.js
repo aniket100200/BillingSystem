@@ -2,10 +2,9 @@ import React, { useState } from 'react'
 import '../styles/card.scss'
 import { Button } from 'antd';
 
-const UtensileCard = ({ card, uuid }) => {
+const UtensileCard = ({ card, uuid, onCardDoubleClick }) => {
     const[quantity,setQuantity] = useState(0);
-
-    console.log(uuid);
+    
     if (!card) return <h1> Loading</h1>
 
     const increase = ()=>{
@@ -26,9 +25,9 @@ const UtensileCard = ({ card, uuid }) => {
     return (
         <div className='card' >
             <div className='img' onDoubleClick={()=>{
-            alert(card.uuid);
-        }}>
-                <img src={card.imageURL} alt={card.name} />
+                onCardDoubleClick(card.uuid);
+            }}>
+                <img src={card.imageURL} alt={card.name} key={card.uuid}/>
             </div>
             <div className='details'>
                 <div className='title'>{card.name}</div>

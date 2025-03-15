@@ -1,15 +1,18 @@
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, Select } from 'antd'
 import FormItem from 'antd/es/form/FormItem';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import '../styles/createUtensiles.scss'
 import '../styles/login.scss'
 import { addUtensile } from '../auth';
+import axios from 'axios';
+import { Option } from 'antd/es/mentions';
 
 const CreateUtensile = ({uuid}) => {
     const navigate = useNavigate();
 
   const [isLoading, setIsLoading] = useState(false);
+    const[images, setImages] = useState([]);
 
     const saveOnSuccess = (data) => {
        
@@ -27,6 +30,19 @@ const CreateUtensile = ({uuid}) => {
     
 
     }
+    useEffect(()=>{
+        (async()=>{
+            const resp = await axios({
+                url : '/urls.json',
+                method: "GET"
+            })
+
+            const result = resp.data;
+          setImages(result.images);
+
+        })();
+
+    },[]);
 
     return (
 
@@ -55,9 +71,18 @@ const CreateUtensile = ({uuid}) => {
                     </Form.Item>
 
 
-                    <Form.Item label="ImageUrl" rules={[ {type:"url", message:"It should be Url"},{ required: true, message: "ImageUrl is required" }]} name={"imageUrl"}>
-                        <Input placeholder='ImageUrl'/>
+                    <Form.Item label="ImageUrl" rules={[{ required: true, message: "ImageUrl is required" }]} name={"imageUrl"}>
+                       <Select defaultValue={images[0]}
+                       style={{width : 200}} onChange={()=>{}}>
+                       {
+                            images.map(img=>
+                            <Option value={img.url}>{img.name}</Option>)
+                       }
+
+
+                       </Select>
                     </Form.Item>
+            
 
                     <Button block={true} className='btn' htmlType='submit' loading={isLoading}>Submit</Button>
                 </Form>

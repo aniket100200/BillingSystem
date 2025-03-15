@@ -80,8 +80,17 @@ public class UserServiceImp implements UserService {
     @Override
     public UserResponseDto updateUser(String uuid, UserRequestDto dto) {
         User user = UserTransformer.userFromUserDto(dto);
+        User user1 = userRepository.findByUuid(uuid);
+        if(user1 == null) {
+            throw new UserNotFoundException("User not found");
+        }
+
+
         user.setUuid(uuid);
+        if(dto.getPassword()!=null)
         user.setPassword(passwordEncoder.encode(user.getPassword()));
+        else  user.setPassword(user1.getPassword());
+
        user = userRepository.save(user);
         return UserTransformer.userToUserResponseDto(user);
     }

@@ -41,7 +41,7 @@ const Signup = ({uuid}) => {
             <Input placeholder={"State"}/>
           </Form.Item>
 
-          <Form.Item name={"Zip"} rules={[{required: true, message: "Zip is required"}]} label={"zip"}>
+          <Form.Item name={"zip"} rules={[{required: true, message: "Zip is required"}]} label={"zip"}>
             <Input placeholder={"zip"}/>
           </Form.Item>
           <Form.Item name={"country"} rules={[{required: true, message: "Country is required"}]} label={"Country"}>

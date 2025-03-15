@@ -1,0 +1,28 @@
+.home{
+  #popup{
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    justify-content: center;
+    align-items: center;
+
+    .popup-container{
+      background-color: #e3e3e3;
+      height: 90vh;
+      width: 90vw;
+      body{
+        overflow: hidden;
+      }
+
+      .form{
+          Input,.ps-input{
+              width: 500px ;
+          }
+      }
+    }
+
+  }
+}

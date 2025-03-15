@@ -33,7 +33,9 @@ public class SecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/login").permitAll() // Allow login endpoint
                         .requestMatchers("/test").authenticated()  // Require authentication for /test
+                        .requestMatchers("/home/test").permitAll()
                         .requestMatchers("/user/create").permitAll()
+                        .requestMatchers("/user/getMessage").permitAll()
                         .requestMatchers("/user/login").permitAll()
                         .anyRequest().authenticated()              // Require authentication for all other requests
                 )

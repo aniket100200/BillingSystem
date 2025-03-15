@@ -46,6 +46,11 @@ public class UtensileController {
         }
     }
 
+    @PutMapping("/update")
+    public ResponseEntity updateUtensile(@RequestParam("uuid") String uuid,@RequestBody UtensileRequestDto utensile) {
+        return ResponseEntity.ok(utensileService.updateUtensile(uuid,utensile));
+    }
+
 
 
 }

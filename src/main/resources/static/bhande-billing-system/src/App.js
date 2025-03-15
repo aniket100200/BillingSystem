@@ -49,13 +49,7 @@ function App() {
     <div className='App'>
     
     
-    <div id='popup' ref={popupRef}>
-    <Button className='popup-close-btn' onClick={closePopup}>Close</Button>
-    
-        <div id='popup-container'>
-        
-        </div>
-    </div>
+
 
     <div id = 'toast' style={{display : "none", position:"fixed"}}>
 

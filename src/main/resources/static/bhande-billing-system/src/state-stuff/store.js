@@ -2,10 +2,12 @@ import { applyMiddleware, combineReducers, legacy_createStore  as createStore } 
 import { reducer } from "./reducer";
 import { thunk } from 'redux-thunk'
 import { userReducer } from "./userdatareducer";
+import { utensileReducer } from "./utensilereducer";
 
 const rootReducer =combineReducers({
     login: reducer,
-    user : userReducer
+    user : userReducer,
+    utensile: utensileReducer
 });
 
 /**

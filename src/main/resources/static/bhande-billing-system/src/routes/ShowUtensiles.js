@@ -1,11 +1,19 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { baseURL } from '../auth';
 import UtensileCard from '../components/UtensileCard';
 import '../styles/utesnsiles.scss'
+import { useDispatch, useSelector } from 'react-redux';
+import UtensilePopup from '../components/utesnsiles/UtensilePopup';
+import { utensileActions } from '../state-stuff/utensilereducer';
 
 const ShowUtensiles = () => {
-    const [utensile, setUtensiles] = useState([]);
+
+    const dispatch = useDispatch();
+   
+    const utensile = useSelector(state => state.utensile.utensiles);
+   
+    const popupUtensile = useRef(null);
 
     const headers = [];
 
@@ -15,34 +23,39 @@ const ShowUtensiles = () => {
         }
     }
 
+    
 
-    useEffect(() => {
+    const onCardDoubleClick = (uuid)=>{
+    
+        
+        var currentUtensile = utensile.filter((u)=>{
+            return u.uuid == uuid 
+        });
+        
+        currentUtensile = currentUtensile[0];
 
-        (async () => {
-            try {
-                const resp = await axios({
-                    method: "GET",
-                    url: baseURL + "/utensile/get",
-                    headers: {
-                        Authorization: "Bearer " + localStorage.getItem("token")
-                    }
 
-                });
+        dispatch({type : utensileActions.selectedUtensile, payload : {card :currentUtensile}});
 
-                setUtensiles(resp.data);
-            } catch (error) {
-                console.log(error);
-            }
-        })();
-    }, []);
+        popupUtensile.current.style.display = "flex";
+    
+        
+    }
+
+    useEffect(()=>{
+        
+    });
+    
+
     return (
         <div className='show-utensiles cards'>
            {
-            utensile.map(card=>{
-                return  <UtensileCard card={ card} key={card.uuid} uuid={"aniket"}/>
+            utensile.map((card,idx)=>{
+                return  <UtensileCard card={ card} key={idx} uuid={card.uuid} onCardDoubleClick={onCardDoubleClick}/>
             })
            }
-          
+
+           <UtensilePopup popupRef={popupUtensile}  />
         </div>
     )
 }

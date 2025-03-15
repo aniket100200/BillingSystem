@@ -82,7 +82,7 @@ public class UserController {
         }
     }
 
-    @PostMapping("/update")
+    @PutMapping("/update")
     public ResponseEntity<String> updateUser(@RequestParam("uuid") String uuid,@RequestBody UserRequestDto dto) {
         UserResponseDto responseDto = userService.updateUser(uuid,dto);
 

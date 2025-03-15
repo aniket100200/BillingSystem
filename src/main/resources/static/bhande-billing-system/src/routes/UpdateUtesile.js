@@ -1,67 +1,102 @@
-import { Button, Form, Input } from 'antd'
+import { Button, Form, Input, Select } from 'antd'
 import FormItem from 'antd/es/form/FormItem';
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import '../styles/createUtensiles.scss'
-import '../styles/login.scss'
+import '../styles/utensiles/updateUtesnsile.scss'
 import { addUtensile } from '../auth';
+import axios from 'axios';
+import { Option } from 'antd/es/mentions';
+import { useSelector } from 'react-redux';
+import {changeUtensile} from "../auth/utensiles";
 
 const UpdateUtensile = ({uuid}) => {
     const navigate = useNavigate();
 
+    const selectedUtensile = useSelector(state => state.utensile.selectedUtensile);
+
   const [isLoading, setIsLoading] = useState(false);
+    const[images, setImages] = useState([]);
 
-    const saveOnSuccess = (data) => {
-       
-        const resp = addUtensile(data);
-        setIsLoading(true);
+    const [form] = Form.useForm();
 
-        resp.then((data)=>{
-            const {success} = data;
-            if(success)
-                alert("added Successfully");
-            setIsLoading(false);
-        }).catch((err)=>{
-            alert("error is there")
-        });
-    
+
+
+    const saveOnSuccess = (e) => {
+
+        e.preventDefault();
+
+        // console.log(e.target?.imageUrl?.value);
+
+        const name = e.target?.name?.value;
+        const quantity = e.target?.quantity?.value;
+        const price = e.target?.price?.value;
+        const imgUrl = e.target?.imageUrl?.value;
+        const uuid = e.target?.uuid?.value;
+
+        const data ={
+            name,
+            quantity,
+            price,
+            imgUrl,
+        }
+
+        const resp = changeUtensile(uuid,data);
+
+        resp.then(res=>{
+          console.log(res);
+        })
+
+
+
 
     }
+
+     useEffect(()=>{
+            (async()=>{
+                const resp = await axios({
+                    url : '/urls.json',
+                    method: "GET"
+                })
+
+                const result = resp.data;
+              setImages(result.images);
+
+            })();
+
+        },[]);
 
     return (
 
         <div className={"create-utensile"}>
-            <button onClick={() => {
-                navigate('/utensile');
-            }}><span className="material-icons">arrow_back</span></button>
+        
+        <div className='form-container'>
+            <form className='form' layout='vertical' onSubmit={saveOnSuccess}>
 
-            <div>
-                Creating an Utensile
-            </div>
+                <input placeholder='Uuid' id='uuid' hidden={true} name='uuid' value={selectedUtensile?.uuid}/>
+                <label htmlFor='name'> Name:</label>
+                <input placeholder='Name' id='name' name='name' defaultValue={selectedUtensile?.name}/>
 
-            <div className='form-container'>
-                <Form className='form' layout='vertical' onFinish={saveOnSuccess}>
-                    <Form.Item label={"Name"} rules={[{ type: "string", message: "Name is Required" }, { required: true, message: "Name is Required" }]} name={"name"}>
-                        <Input placeholder='Name' />
-                    </Form.Item>
-
-                    <Form.Item label="Quantity" rules={[ { required: true, message: "Quantity is required" },{pattern:/^[1-9]\d*$/, message:"Quantity Should be either One or More"}]} name={"quantity"}>
-                        <Input placeholder='Quantity' type='number' />
-                    </Form.Item>
+                <label htmlFor='quantity'> Quantity:</label>
+                <input placeholder='Quantity' id='quantity' name='quantity' defaultValue={selectedUtensile?.quantity}/>
 
 
-                    <Form.Item label="Price" rules={[ { required: true, message: "Price is required" },{pattern:/^[0-9]\d*$/, message:"Price Should be Positive or Zero"}]} name={"price"}>
-                        <Input placeholder='Price' type='number' />
-                    </Form.Item>
+                <label htmlFor='price'> Price:</label>
+                <input placeholder='Price' id='price' name='price' defaultValue={selectedUtensile?.price}/>
+
+                <select defaultValue={images[0]}
+                        style={{width: 200}} onChange={() => {
+                }} id={"imageUrl"} name={"imageUrl"}>
+                    {
+                        images.map(img =>
+                            <option value={img.url}>{img.name}</option>)
+                    }
 
 
-                    <Form.Item label="ImageUrl" rules={[ {type:"url", message:"It should be Url"},{ required: true, message: "ImageUrl is required" }]} name={"imageUrl"}>
-                        <Input placeholder='ImageUrl'/>
-                    </Form.Item>
+                </select>
 
-                    <Button block={true} className='btn' htmlType='submit' loading={isLoading}>Submit</Button>
-                </Form>
-            </div>
+                <button block={true} className='btn' htmlType='submit' loading={isLoading}>Submit</button>
+            </form>
+        </div>
 
         </div>
 
