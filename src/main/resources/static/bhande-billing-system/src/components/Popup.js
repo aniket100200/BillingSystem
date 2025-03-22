@@ -35,9 +35,12 @@ const Popup = ({popup,setRefresh,refresh}) => {
         const state = target.state?.value;
         const zip = target.zip?.value ? target.zip.value : "441924";
         const country = target?.country?.value;
+        const role = target?.role?.value;
 
 
-      const user =  { name, email, phone, address, city, state, zip,country};
+      const user =  { name, email, phone, address, city, state, zip,country,role};
+        console.log(user);
+        
 
       const resp = updateUser(uuid,user);
        resp.then((data)=>{
@@ -89,6 +92,14 @@ const Popup = ({popup,setRefresh,refresh}) => {
                 <div className={"form-group"}>
                     <label htmlFor="country">Country:</label>
                     <input id="country" type={"text"} defaultValue={selectedUser?.country} required={true}/>
+                </div>
+                <div className={"form-group"}>
+                    <label htmlFor="role">Country:</label>
+                    <select id="role" name="role">
+                        <option value={"user"} selected={selectedUser?.role==="user"}>User</option>
+                        <option value={"admin"} selected={selectedUser?.role==="admin"} >Admin</option>
+                        <option value={"viewer"} selected={selectedUser?.role==="viewer"}>Viewer</option>
+                    </select>
                 </div>
                 <div className={"form-group btns"}>
                     <button type={'submit'} className={"btn"}> Submit</button>

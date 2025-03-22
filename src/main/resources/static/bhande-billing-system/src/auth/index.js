@@ -23,11 +23,13 @@ export async function login(formData){
        notification.success({message:"Login successfully"});
 
        const token = resp?.data?.message;
+        
        if(token)
        localStorage.setItem("token",resp?.data?.message);
        
+
        
-       return {success:true};
+       return {success:true,user: resp?.data};
 
 
     }

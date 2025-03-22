@@ -16,6 +16,30 @@ public class UserResponseDto {
     String country;
     String message;
 
+    public String getRole() {
+        return role;
+    }
+
+    public UserResponseDto(String uuid, String name, String email, String phone, String address, String city, String state, String zip, String country, String message, String role) {
+        this.uuid = uuid;
+        this.name = name;
+        this.email = email;
+        this.phone = phone;
+        this.address = address;
+        this.city = city;
+        this.state = state;
+        this.zip = zip;
+        this.country = country;
+        this.message = message;
+        this.role = role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    String role;
+
     public String getUuid() {
         return uuid;
     }

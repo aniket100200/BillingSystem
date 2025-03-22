@@ -19,11 +19,13 @@ const Login = () => {
     const resp =login(data); //this is promise
     setIsLoading(true);
     resp.then((data)=>{
-      const{success} =data;
+      const{success,user} =data;
 
       if(success)
         {
           dispatch({ type: actions.LoggedIn});
+          
+          dispatch({type:actions.currentUser,payload:{data : user}});
 
           navigate("/home");
         }

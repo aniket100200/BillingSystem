@@ -1,0 +1,28 @@
+meta {
+  name: UpdateUtesnsiles
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:8080/utensile/update?uuid=0a624eb1-548b-4555-a837-a275d49e0b9c
+  body: json
+  auth: none
+}
+
+params:query {
+  uuid: 0a624eb1-548b-4555-a837-a275d49e0b9c
+}
+
+headers {
+  Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhbmlrZXRraGFuZ2FyNDU5QGdtYWlsLmNvbSIsImlhdCI6MTc0MjAzODMxMCwiZXhwIjoxNzQyMDU2MzEwfQ.VQFuv0GjALpDaHjdOS0EsSrNoE-a9HII4M_NadjqvlrZMHmHivMQjPNUQy3BkIB-rMXecEVxdRfx_AI8xSVEfw
+}
+
+body:json {
+  {
+    "name":"Lokhandi Sarata",
+    "quantity":123,
+    "price":200,
+    "imgUrl":"http://abc.jpg"
+  }
+}

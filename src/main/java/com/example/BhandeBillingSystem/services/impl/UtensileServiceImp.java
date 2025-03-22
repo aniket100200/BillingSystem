@@ -64,7 +64,11 @@ public class UtensileServiceImp implements UtensileService {
             throw new UtensileNotFoundException("Utensile Not Found with id");
         }
 
-        UtensileTransformer.transformUtensile(requestDto);
+        String uuid = utensile.getUuid();
+       utensile = UtensileTransformer.transformUtensile(requestDto);
+       utensile.setUuid(uuid);
+
+        utensileRepository.save(utensile);
         return "Utesnile With Id = "+id+" has been updated Successfully";
     }
 

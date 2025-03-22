@@ -6,6 +6,7 @@ const endpoints = {
 }
 
 export async function changeUtensile(uuid,formData){
+    debugger;
     try{
         const resp = await  axios({
             url: endpoints.utensile+"/update",

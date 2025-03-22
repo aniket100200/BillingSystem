@@ -19,6 +19,7 @@ public class UserTransformer {
         user.setPassword(dto.getPassword());
         user.setState(dto.getState());
         user.setZip(dto.getZip());
+        user.setRole(dto.getRole());
 
         return user;
 
@@ -36,6 +37,7 @@ public class UserTransformer {
         userResponseDto.setCountry(user.getCountry());
         userResponseDto.setState(user.getState());
         userResponseDto.setZip(user.getZip());
+        userResponseDto.setRole(user.getRole());
         return userResponseDto;
     }
 }

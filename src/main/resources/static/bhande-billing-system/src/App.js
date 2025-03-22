@@ -25,6 +25,8 @@ function App() {
   //lazy Initialization..
   const dispatch = useDispatch();  
   const popupRef = useRef(null);
+
+  const user = useSelector(s=>s.user.currentUser);
   
   useEffect(()=>{
 
@@ -32,6 +34,9 @@ function App() {
   //  popupRef.current.innerHTML="Aniket";
      
    },[]);
+
+   console.log(user);
+   
 
    const closePopup = ()=>{
     if (popupRef.current) {
@@ -47,10 +52,6 @@ function App() {
 
   return(
     <div className='App'>
-    
-    
-
-
     <div id = 'toast' style={{display : "none", position:"fixed"}}>
 
     </div>
@@ -65,7 +66,8 @@ function App() {
           {isUserLoggedIn ? <>
             <Route path='/home' element={<LoadingWrapper Component={Home} />} />
             <Route path='/utensile' element={<LoadingWrapper Component={Utensiles} />} />
-            <Route path='/user' element={<LoadingWrapper Component={User} />} />
+            {user?.role!="admin" ? <></> :  <Route path='/user' element={<LoadingWrapper Component={User} />} />}
+           
               <Route path={"/create/utensile"} element={<LoadingWrapper Component={CreateUtensile}/>} />
               <Route path={"/create/*"}  />
           </> :

@@ -2,7 +2,8 @@ import { actions } from "./reducer";
 
 const initialState ={
     userData :[],
-    selectedEditUser : null
+    selectedEditUser : null,
+    currentUser:null,
 }
 
 export const userReducer = (currentState=initialState,action)=>{
@@ -10,6 +11,10 @@ export const userReducer = (currentState=initialState,action)=>{
 
     if(action.type === actions.getData){
         return {...currentState,userData: action?.payload?.data};
+    }
+
+    if(action.type === actions.currentUser){
+        return {...currentState,currentUser : action?.payload?.data}
     }
 
     if(action.type == actions.selectUser) {

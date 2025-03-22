@@ -1,0 +1,13 @@
+.profile-bar{
+    margin: 100px;
+    border: 1px solid red;
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .profile{
+        border: 2px solid black;
+        height: 70px;
+        min-width: 90px;
+    }
+}

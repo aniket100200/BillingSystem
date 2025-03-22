@@ -5,11 +5,19 @@ import com.example.BhandeBillingSystem.dtos.response.UserResponseDto;
 import com.example.BhandeBillingSystem.exceptions.user.UserNotFoundException;
 import com.example.BhandeBillingSystem.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.net.URI;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.List;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("/user")
@@ -17,6 +25,8 @@ import java.util.List;
 public class UserController {
     final UserService userService;
     private final AuthController authController;
+
+    private static final String UPLOAD_DIRECTORY = System.getProperty("user.dir")+"/src/main/resources/static/bhande-billing-system/public/profiles";
 
     @Autowired
     public UserController(UserService userService, AuthController authController) {
@@ -110,6 +120,26 @@ public class UserController {
             return ResponseEntity.notFound().build();
         }
 
+    }
 
+
+
+    @PostMapping("/image/{name}")
+    public ResponseEntity<String> uploadImage(@RequestParam("file") MultipartFile file,@PathVariable("name") String profileName) {
+       try{
+           //create Folder if not exists
+           Files.createDirectories(Paths.get(UPLOAD_DIRECTORY));
+           // Generate a unique file name
+           String fileName = profileName +".jpg";
+           String filePath = UPLOAD_DIRECTORY+"/" + fileName;
+
+           // Save file
+           file.transferTo(new File(filePath));
+
+           return ResponseEntity.ok("{\"message\": \"File uploaded successfully\", \"filePath\": \"" + fileName + "\"}");
+
+       }catch (Exception e){
+           return ResponseEntity.notFound().build();
+       }
     }
 }

@@ -8,6 +8,7 @@ export const actions ={
    NotLoggedIn: "NotLoggedIn",
    getData : "getData",
     selectUser : "selectUser",
+    currentUser: "currentUser"
 }
 
 export const reducer = (currentState = initialState, action)=>{

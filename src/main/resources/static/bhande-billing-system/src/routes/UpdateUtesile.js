@@ -9,7 +9,7 @@ import { Option } from 'antd/es/mentions';
 import { useSelector } from 'react-redux';
 import {changeUtensile} from "../auth/utensiles";
 
-const UpdateUtensile = ({uuid}) => {
+const UpdateUtensile = ({uuid,popupUtensile}) => {
     const navigate = useNavigate();
 
     const selectedUtensile = useSelector(state => state.utensile.selectedUtensile);
@@ -18,6 +18,14 @@ const UpdateUtensile = ({uuid}) => {
     const[images, setImages] = useState([]);
 
     const [form] = Form.useForm();
+
+    const closePopup= ()=>{
+        popupUtensile.current.style.display = "none";
+    }
+
+    useEffect(()=>{
+        console.log(popupUtensile);
+    },[])
 
 
 
@@ -37,13 +45,14 @@ const UpdateUtensile = ({uuid}) => {
             name,
             quantity,
             price,
-            imgUrl,
+            imageUrl : imgUrl,
         }
 
         const resp = changeUtensile(uuid,data);
 
         resp.then(res=>{
-          console.log(res);
+          const {success}= res;
+          if(success)alert("Updated SuccesFully");
         })
 
 
@@ -90,12 +99,13 @@ const UpdateUtensile = ({uuid}) => {
                         images.map(img =>
                             <option value={img.url}>{img.name}</option>)
                     }
-
-
                 </select>
 
                 <button block={true} className='btn' htmlType='submit' loading={isLoading}>Submit</button>
+                
             </form>
+
+            <button className='close-btn' onClick={closePopup}>Close</button>
         </div>
 
         </div>
@@ -103,4 +113,4 @@ const UpdateUtensile = ({uuid}) => {
     )
 }
 
-export default UpdateUtensile
+export default UpdateUtensile;

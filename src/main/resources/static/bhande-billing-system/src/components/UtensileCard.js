@@ -27,7 +27,7 @@ const UtensileCard = ({ card, uuid, onCardDoubleClick }) => {
             <div className='img' onDoubleClick={()=>{
                 onCardDoubleClick(card.uuid);
             }}>
-                <img src={card.imageURL} alt={card.name} key={card.uuid}/>
+                <img src={card.imageURL} loading='lazy' alt={card.name} key={card.uuid}/>
             </div>
             <div className='details'>
                 <div className='title'>{card.name}</div>

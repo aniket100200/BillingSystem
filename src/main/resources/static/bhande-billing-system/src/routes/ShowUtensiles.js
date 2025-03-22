@@ -1,5 +1,5 @@
 import axios from 'axios';
-import React, { useEffect, useRef, useState } from 'react'
+import React, { createContext, useEffect, useRef, useState } from 'react'
 import { baseURL } from '../auth';
 import UtensileCard from '../components/UtensileCard';
 import '../styles/utesnsiles.scss'
@@ -16,6 +16,8 @@ const ShowUtensiles = () => {
     const popupUtensile = useRef(null);
 
     const headers = [];
+   
+    const popupContext= createContext();
 
     if (utensile) {
         for (let val in utensile[0]) {
@@ -47,7 +49,7 @@ const ShowUtensiles = () => {
     });
     
 
-    return (
+    return (       
         <div className='show-utensiles cards'>
            {
             utensile.map((card,idx)=>{
@@ -57,6 +59,7 @@ const ShowUtensiles = () => {
 
            <UtensilePopup popupRef={popupUtensile}  />
         </div>
+       
     )
 }
 
