@@ -49,7 +49,7 @@ const ImageUpload = () => {
                 method:"POST",
                 data:formData,
             headers : {
-                Authorization: "Bearer " + localStorage.getItem("token")
+                Authorization: "Bearer " + sessionStorage.getItem("token")
             }
             });
             const message = resp.data;

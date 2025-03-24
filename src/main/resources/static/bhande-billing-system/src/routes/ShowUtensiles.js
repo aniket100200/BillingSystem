@@ -25,9 +25,13 @@ const ShowUtensiles = () => {
         }
     }
 
+    const user = useSelector(s=>s.user.currentUser);
+
     
 
     const onCardDoubleClick = (uuid)=>{
+
+        if(user.role!== "admin")return ;
     
         
         var currentUtensile = utensile.filter((u)=>{

@@ -18,7 +18,7 @@ async function myThunk(dispatch) {
             url: endpoints.allUsers,
             method: "GET",
             headers: {
-              Authorization: "Bearer " + localStorage.getItem("token")
+              Authorization: "Bearer " + sessionStorage.getItem("token")
             },
           });          
          dispatch({type : actions.getData, payload : {data : response.data}});

@@ -11,7 +11,7 @@ const SidePanel = () => {
   const dispatch = useDispatch();
 
   const LogOut = ()=>{
-    localStorage.clear("token");
+    sessionStorage.clear("token");
     dispatch({type : actions.NotLoggedIn});
     navigate('/');
   

@@ -13,6 +13,7 @@
             width: 300px;
             object-fit: cover;
         }
+        overflow: hidden;
     }
 
     .details{
@@ -21,5 +22,17 @@
             font-size: large;
             font-weight: 400;
         }
+    }
+}
+
+@media (max-width:756px) {
+    
+    .img{
+        img{
+            height: 150px;
+            width: 250px;
+            object-fit: cover;
+        }
+        overflow: hidden;
     }
 }

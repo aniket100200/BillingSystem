@@ -17,10 +17,10 @@ const Home = () => {
 
   const currentUser = useSelector((s)=>s.user.currentUser);
 
-  if(!localStorage.getItem("user")){
-      localStorage.setItem("user",JSON.stringify(currentUser));
+  if(!sessionStorage.getItem("user")){
+      sessionStorage.setItem("user",JSON.stringify(currentUser));
   }else if(!currentUser){
-    dispatch({type:actions.currentUser,payload : {data : JSON.parse(localStorage.getItem("user"))}});
+    dispatch({type:actions.currentUser,payload : {data : JSON.parse(sessionStorage.getItem("user"))}});
   }
 
   return (

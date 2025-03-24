@@ -25,7 +25,7 @@ export async function login(formData){
        const token = resp?.data?.message;
         
        if(token)
-       localStorage.setItem("token",resp?.data?.message);
+       sessionStorage.setItem("token",resp?.data?.message);
        
 
        
@@ -69,7 +69,7 @@ export async function addUtensile(formData){
             method: "POST",
             data : formData,
             headers:{
-                Authorization: "Bearer " + localStorage.getItem("token")
+                Authorization: "Bearer " + sessionStorage.getItem("token")
             }
 
         })
@@ -90,7 +90,7 @@ export async function deleteUser(uuid) {
             "uuid":uuid
         },
         headers:{
-            Authorization: "Bearer "+localStorage.getItem("token")
+            Authorization: "Bearer "+sessionStorage.getItem("token")
         }
        })
 
@@ -110,7 +110,7 @@ export async function editUser(uuid) {
         method: "GET",
        
         headers:{
-            Authorization: "Bearer "+localStorage.getItem("token")
+            Authorization: "Bearer "+sessionStorage.getItem("token")
         },
        })
 
@@ -134,7 +134,7 @@ export async  function updateUser(uuid,data) {
                 uuid : uuid
             },
             headers:{
-                Authorization: "Bearer "+localStorage.getItem("token")
+                Authorization: "Bearer "+sessionStorage.getItem("token")
             },
 
         })
@@ -153,7 +153,7 @@ export async function getUtensiles() {
             method: "GET",
             url: endpoints.getUtensiles,
             headers: {
-                Authorization: "Bearer " + localStorage.getItem("token")
+                Authorization: "Bearer " + sessionStorage.getItem("token")
             }
 
         });

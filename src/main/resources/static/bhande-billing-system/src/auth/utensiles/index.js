@@ -16,7 +16,7 @@ export async function changeUtensile(uuid,formData){
                 uuid : uuid
             },
             headers : {
-                Authorization: "Bearer " + localStorage.getItem("token")
+                Authorization: "Bearer " + sessionStorage.getItem("token")
             }
 
         });

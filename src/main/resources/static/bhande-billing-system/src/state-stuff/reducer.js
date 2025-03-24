@@ -1,6 +1,6 @@
 //redux-thunk => helps us in acheiving the asynchrounous updates to the store..
 const initialState = {
-    isUserLoggedIn : Boolean(localStorage.getItem("token")),
+    isUserLoggedIn : Boolean(sessionStorage.getItem("token")),
 }
 
 export const actions ={
